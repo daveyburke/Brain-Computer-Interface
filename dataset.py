@@ -6,8 +6,6 @@ from torch.utils.data import Dataset
 import matplotlib.pyplot as plt
 
 class EEGDataSet(Dataset):
-    PREPROCESSED_DATA_FILE = "data/preprocessed_data.pt"
-
     """
     EEG Dataset that returns [[tensor, label]] where tensor shape is [1, 3, 384], 1 conv channel. 3 eeg channels, 256 samples
     Data description: https://www.bbci.de/competition/iv/desc_2b.pdf
@@ -28,6 +26,8 @@ class EEGDataSet(Dataset):
         1081 0x0439 Eye blinks
         32766 0x7FFE Start of a new run    
     """
+
+    PREPROCESSED_DATA_FILE = "data/preprocessed_data.pt"
 
     def __init__(self):
         if not os.path.exists(self.PREPROCESSED_DATA_FILE) :

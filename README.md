@@ -1,4 +1,4 @@
-# Brain-Computer-Interface
+# Brain Computer Interface
 
 Brain Computer Interface for left/right imagined movement from
 3 EEG electrodes (C3, Cz, C4). Applies a convolutional network

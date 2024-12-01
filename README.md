@@ -30,8 +30,9 @@ bandpass 4-50 Hz, uV scale). EEG data epoch should start sync'd to
 stimulus trigger (tone 1 kHz, 70 ms plus prompt "Think left or right")
 
 ```
-if app.predict_imagined_movement(data) == EEGInferenceApp.LEFT:
+movement = app.predict_imagined_movement(data)
+if movement == EEGInferenceApp.LEFT:
     print("You imagined left")
-elif app.predict_imagined_movement(data) == EEGInferenceApp.RIGHT:
+elif movement == EEGInferenceApp.RIGHT:
     print("You imagined right")
 ```

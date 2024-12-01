@@ -9,6 +9,11 @@ Validation accuracy ~80%.
 Based on approach in https://arxiv.org/pdf/1611.08024. <br>
 Training data: https://www.bbci.de/competition/iv/desc_2b.pdf
 
+Package install
+```
+pip install -r requirements.txt
+````
+
 ## Inference
 
 EEG data should be a numpy array of size [3, 256] corresponding to

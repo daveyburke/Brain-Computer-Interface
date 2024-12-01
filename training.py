@@ -72,9 +72,8 @@ class EEGTrainingApp:
                 trnMetrics_g
             )
             loss.backward()
-
             self.optimizer.step()
-            self.model.apply_max_norm() 
+            
 
         return trnMetrics_g.to('cpu')
     

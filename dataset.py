@@ -5,8 +5,6 @@ import torch
 from torch.utils.data import Dataset    
 import matplotlib.pyplot as plt
 
-
-
 class EEGDataSet(Dataset):
     PREPROCESSED_DATA_FILE = "data/preprocessed_data.pt"
 

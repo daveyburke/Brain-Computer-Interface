@@ -42,7 +42,7 @@ class EEGModel(nn.Module):
         self.conv2 = weight_norm(nn.Conv2d(8, 16, (3, 1), groups=8, bias=False)) # [8, C, T] -> [16, 1, T]
         self.batch_norm2 = nn.BatchNorm2d(16, eps=1e-05, momentum=0.9)  # eps/momentum to keep stable
         self.avg_pool1 = nn.AvgPool2d((1, 4))  # [16, 1, T // 4]
-        self.dropout = nn.Dropout2d(0.25)
+        self.dropout = nn.Dropout2d(0.5)
 
         # Layer 3 (pointwise conv, for efficiency like MobileNet)
         self.conv3 = nn.Conv2d(16, 16, (1, 16), padding=(0, 8), groups=16, bias=False) # [16, 1, T // 4]

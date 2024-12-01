@@ -1,9 +1,9 @@
 # Brain Computer Interface
 
-Brain Computer Interface for left/right imagined movement from
+AI model for a Brain Computer Interface. Detects left/right imagined movement from
 3 EEG electrodes (C3, Cz, C4). Applies a convolutional network
 with temporal filters, then spatial filters (across electrodes)
-followed by another convolutional network and dense layer. 
+followed by another convolutional layer,  and dense layer. 
 Validation accuracy ~80%. 
 
 Based on approach in https://arxiv.org/pdf/1611.08024. <br>
@@ -19,7 +19,7 @@ pip install -r requirements.txt
 EEG data should be a numpy array of size [3, 256] corresponding to
 channels (C3, Cz, C4) x time series (2s of data sampled at 128 Hz, 
 bandpass 4-50 Hz, uV scale). EEG data epoch should start sync'd to 
-stimulus trigger (tone 1 kHz, 70 ms plus prompt "Think left or right")
+stimulus trigger (tone 1 kHz, 70 ms plus prompt, e.g.  "Think left or right")
 
 ```
 from inference import EEGInferenceApp

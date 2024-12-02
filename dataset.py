@@ -45,19 +45,19 @@ class EEGDataSet(Dataset):
         for i in range(1, 10): # subjects 10
             for j in range (1, 4): # sessions 4
                 raw_data = mne.io.read_raw_gdf(f'data/B0{i}0{j}T.gdf', preload=True)
+                raw_data = raw_data.filter(l_freq=4, h_freq=50) # 4 hz to reduce EOG contamination and drift
                 raw_data = raw_data.resample(128)  # jitters slightly but neural net will learn anyways
-                raw_data = raw_data.filter(l_freq=4, h_freq=None) # 4 hz to reduce EOG contamination and drift
 
                 # Get left, right event times and label as 0, 1 respectively
                 events, events_dict = mne.events_from_annotations(raw_data) # events = [[time, 1, type]]
                 mask = (events[:, 2] == events_dict['769']) | (events[:, 2] == events_dict['770'])
                 lr_events = [[row[0], (0 if row[2] == events_dict['769'] else 1)] for row in events[mask]]
 
-                # For each event, append EEG data for 3 channels at the event start time + 2s in addition to label
+                # For each event, append EEG data for 3 channels at the event start time + 3s in addition to label
                 # Create additional synthetic data by sliding the window forward
                 for lr_event in lr_events:
-                    T = int(2 * raw_data.info['sfreq'])
-                    for offset in range(0, T//4, 1):
+                    T = int(3 * raw_data.info['sfreq'])
+                    for offset in range(0, T//3, 2):
                         start = lr_event[0] + offset
                         stop = start + T
                         selected_channel_names = ['EEG:C3', 'EEG:C4', 'EEG:Cz']  

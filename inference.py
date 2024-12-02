@@ -4,7 +4,7 @@ from model import EEGModel
 class EEGInferenceApp:
     """ 
     Class to determine if user imagined a left or right movement.
-    Expects EEG data for C3, CZ, C4, sampled 128 Hz, 50-100 uV, bandpass 4-50 Hz
+    Expects EEG data for C3, C4, Cz, sampled 128 Hz, 50-100 uV, bandpass 4-50 Hz
     Requires trained CHECKPOINT_FILE
     """
     LEFT = 0
@@ -21,7 +21,7 @@ class EEGInferenceApp:
     def predict_imagined_movement(self, data):
         """ 
         Args:
-            data: np array [3, 256] where first dim is channel (C3, CZ, C4), second dim is time
+            data: np array [3, 256] where first dim is channel (C3, C4, Cz), second dim is time
 
         Returns:
             int: 0/1 for left/right imagined movement

@@ -36,7 +36,7 @@ class EEGTrainingApp:
         return EEGModel().to(device=self.device)
     
     def init_optimizer(self):
-        return optim.Adam(self.model.parameters(), lr=0.001)
+        return optim.Adam(self.model.parameters(), lr=0.0001)
 
     def init_dataloaders(self):
         dataset = EEGDataSet()

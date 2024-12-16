@@ -16,9 +16,9 @@ pip install -r requirements.txt
 
 ## Inference
 
-EEG data should be a numpy array of size [3, 256] corresponding to
-channels (C3, C4, Cz) x time series (2s of data sampled at 128 Hz, 
-bandpass 4-50 Hz, uV scale). EEG data epoch should start sync'd to 
+EEG data should be a numpy array of size [3, 384] corresponding to
+channels (C3, C4, Cz) x time series (3s of data sampled at 128 Hz, 
+bandpass 4-50 Hz, in volts). EEG data epoch should start sync'd to 
 stimulus trigger (tone 1 kHz, 70 ms plus prompt, e.g.  "Think left or right")
 
 ```

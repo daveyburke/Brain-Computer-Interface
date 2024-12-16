@@ -4,7 +4,7 @@ from model import EEGModel
 class EEGInferenceApp:
     """ 
     Class to determine if user imagined a left or right movement.
-    Expects EEG data for C3, C4, Cz, sampled 128 Hz, 50-100 uV, bandpass 4-50 Hz
+    Expects EEG data for C3, C4, Cz, sampled 128 Hz, 50-100 uV (in volts), bandpass 4-50 Hz
     Requires trained CHECKPOINT_FILE
     """
     LEFT = 0
@@ -27,7 +27,7 @@ class EEGInferenceApp:
             int: 0/1 for left/right imagined movement
         """
         #self.model.eval()
-        eeg = torch.tensor(data).unsqueeze(0).unsqueeze(0)  # [batch, conv, eeg_channels, time_series]
+        eeg = torch.tensor(data).float().unsqueeze(0).unsqueeze(0)  # [batch, conv, eeg_channels, time_series]
         eeg = eeg.to(device=self.device, non_blocking=True)
         _, probabilities = self.model(eeg)
         _, idx = torch.max(probabilities, dim=1)
@@ -35,7 +35,7 @@ class EEGInferenceApp:
         return idx
     
     def _load_checkpoint(self):
-        checkpoint = torch.load(self._CHECKPOINT_FILE, weights_only=True)
+        checkpoint = torch.load(self._CHECKPOINT_FILE, weights_only=True, map_location='cpu')
         self.model.load_state_dict(checkpoint["MODEL_STATE"])
         epochs_run = checkpoint["EPOCHS_RUN"]
         print(f"Loading checkpoint at epoch {epochs_run}")

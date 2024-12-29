@@ -12,7 +12,7 @@ class EEGInferenceApp:
 
     def __init__(self, checkpoint_file):
         self.device = (torch.device('mps') if torch.backends.mps.is_available() else 
-            torch.device('cuda') if torch.backends.cuda.is_available() else 
+            torch.device('cuda') if torch.cuda.is_available() else 
             torch.device('cpu'))
         self.model = EEGModel().to(device=self.device)
         self._load_checkpoint(checkpoint_file)

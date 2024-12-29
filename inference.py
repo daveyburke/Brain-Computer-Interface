@@ -1,5 +1,5 @@
 import torch
-from model import EEGModel
+from .model import EEGModel
 
 class EEGInferenceApp:
     """ 

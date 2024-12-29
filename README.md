@@ -24,7 +24,7 @@ stimulus trigger (tone 1 kHz, 70 ms plus prompt, e.g.  "Think left or right")
 ```
 from inference import EEGInferenceApp
 
-app = EEGInferenceApp()
+app = EEGInferenceApp("data/checkpoint.pt"))
 movement = app.predict_imagined_movement(data)
 
 if movement == EEGInferenceApp.LEFT:

@@ -139,7 +139,7 @@ class EEGTrainingApp:
         print(f'\t{mode_str} accuracy {accuracy:.2f}%, loss: {loss:.2f}')
 
     def _load_checkpoint(self):
-        checkpoint = torch.load(self.CHECKPOINT_FILE, weights_only = True)
+        checkpoint = torch.load(self.CHECKPOINT_FILE, weights_only=True, map_location=self.device)
         self.model.load_state_dict(checkpoint["MODEL_STATE"])
         self.epochs_run = checkpoint["EPOCHS_RUN"]
         print(f"Resuming training from checkpoint at epoch {self.epochs_run}")

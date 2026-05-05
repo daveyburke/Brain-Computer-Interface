@@ -78,7 +78,6 @@ class EEGModel(nn.Module):
         out = self.flatten(out)
         out = self.dense(out)
 	
-        print(out)
         return out, F.softmax(out, dim=1)  # logits, probabilities
 
         
